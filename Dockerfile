@@ -22,10 +22,12 @@ RUN apt-get install -y \
             ncurses-dev \
             wget \
             zlib1g-dev 
-RUN curl -sLo /opt/openwrt-mptcp.zip https://github.com/xedp3x/openwrt/archive/mptcp.zip && \
-    cd /opt/ && \
-    unzip /opt/openwrt-mptcp.zip && rm -f /opt/openwrt-mptcp.zip
-RUN cd /opt/openwrt-mptcp/ && \
+RUN useradd -m user 
+USER user
+RUN curl -sLo ~/openwrt-mptcp.zip https://github.com/xedp3x/openwrt/archive/mptcp.zip && \
+    cd && \
+    unzip openwrt-mptcp.zip && rm -f openwrt-mptcp.zip
+RUN cd ${HOME}/openwrt-mptcp/ && \
     chmod +x ./scripts/* && sleep 2 && \
     ./scripts/feeds update -a && \
     ./scripts/feeds install -a
