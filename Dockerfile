@@ -1,4 +1,4 @@
-FROM qnib/fedora:22
+FROM qnib/fedora
 
 RUN dnf install -y \
         binutils \
